@@ -1,5 +1,5 @@
-const secp256k1 = require('secp256k1');
 const Buffer = require('safe-buffer').Buffer;
+const secp256k1 = require('secp256k1');
 const ethereumUtils = require('ethereumjs-util');
 const KeyEncoder = require('key-encoder');
 const jwa = require('jwa');
