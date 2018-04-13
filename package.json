@@ -22,8 +22,5 @@
     "key-encoder": "^1.1.6",
     "safe-buffer": "^5.1.1",
     "secp256k1": "^3.5.0"
-  },
-  "devDependencies": {
-    "microbundle": "^0.4.4"
   }
 }
