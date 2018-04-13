@@ -55,5 +55,3 @@ export function verify(value, publicKeyPem, signature) {
   const rs256 = jwa('RS256');
   return rs256.verify(value, signature, publicKeyPem);
 }
-
-window.ChannelKeyUtils = { generateKey, sign, verify };
