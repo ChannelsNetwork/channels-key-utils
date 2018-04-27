@@ -30,3 +30,9 @@ export async function verify(value, signature, publicKey) {
     const signatureBuffer = _fromBase64(signature);
     return await subtle.verify({ name: 'ECDSA', hash: { name: "SHA-256" } }, publicKey, signatureBuffer, textArray);
 }
+export async function exportKey(key) {
+    return await subtle.exportKey('jwk', key);
+}
+export async function importKey(data, privateKey) {
+    return await subtle.importKey('jwk', data, { name: 'ECDSA', namedCurve: 'P-256' }, true, privateKey ? ['sign'] : ['verify']);
+}
