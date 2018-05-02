@@ -23,6 +23,12 @@ export async function gerenerateKey(): Promise<CryptoKeyPair> {
   return (await subtle.generateKey({ name: 'ECDSA', namedCurve: 'P-256' }, true, ['sign', 'verify'])) as CryptoKeyPair;
 }
 
+export async function digest(publicKey: CryptoKey): Promise<string> {
+  const buffer = await subtle.exportKey('raw', publicKey);
+  const digest = await subtle.digest('SHA-256', buffer);
+  return _toBase64(new Uint8Array(digest));
+}
+
 export async function sign(value: any, privateKey: CryptoKey): Promise<string> {
   const text = (typeof value === 'string') ? value : JSON.stringify(value);
   const array = new TextEncoder('utf-8').encode(text);

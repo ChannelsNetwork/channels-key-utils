@@ -18,6 +18,11 @@ function _fromBase64(data) {
 export async function gerenerateKey() {
     return (await subtle.generateKey({ name: 'ECDSA', namedCurve: 'P-256' }, true, ['sign', 'verify']));
 }
+export async function digest(publicKey) {
+    const buffer = await subtle.exportKey('raw', publicKey);
+    const digest = await subtle.digest('SHA-256', buffer);
+    return _toBase64(new Uint8Array(digest));
+}
 export async function sign(value, privateKey) {
     const text = (typeof value === 'string') ? value : JSON.stringify(value);
     const array = new TextEncoder('utf-8').encode(text);
