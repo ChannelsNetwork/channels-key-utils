@@ -5,7 +5,7 @@ const subtle = _crypto.subtle;
 
 function _toBase64(buffer: Uint8Array): string {
   const out = Array.prototype.map.call(buffer, (ch: number) => {
-    return String.fromCharCode(ch)
+    return String.fromCharCode(ch);
   }).join('');
   return btoa(out);
 }
@@ -32,7 +32,7 @@ export async function digest(publicKey: CryptoKey): Promise<string> {
 export async function sign(value: any, privateKey: CryptoKey): Promise<string> {
   const text = (typeof value === 'string') ? value : JSON.stringify(value);
   const array = new TextEncoder('utf-8').encode(text);
-  const signedBuffer = new Uint8Array(await subtle.sign({ name: 'ECDSA', hash: { name: "SHA-256" } }, privateKey, array));
+  const signedBuffer = new Uint8Array(await subtle.sign({ name: 'ECDSA', hash: { name: 'SHA-256' } }, privateKey, array));
   return _toBase64(signedBuffer);
 }
 
@@ -40,7 +40,7 @@ export async function verify(value: any, signature: string, publicKey: CryptoKey
   const text = (typeof value === 'string') ? value : JSON.stringify(value);
   const textArray = new TextEncoder('utf-8').encode(text);
   const signatureBuffer = _fromBase64(signature);
-  return await subtle.verify({ name: 'ECDSA', hash: { name: "SHA-256" } }, publicKey, signatureBuffer, textArray)
+  return await subtle.verify({ name: 'ECDSA', hash: { name: 'SHA-256' } }, publicKey, signatureBuffer, textArray);
 }
 
 export async function exportKey(key: CryptoKey): Promise<JsonWebKey> {

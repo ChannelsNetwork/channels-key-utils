@@ -26,14 +26,14 @@ export async function digest(publicKey) {
 export async function sign(value, privateKey) {
     const text = (typeof value === 'string') ? value : JSON.stringify(value);
     const array = new TextEncoder('utf-8').encode(text);
-    const signedBuffer = new Uint8Array(await subtle.sign({ name: 'ECDSA', hash: { name: "SHA-256" } }, privateKey, array));
+    const signedBuffer = new Uint8Array(await subtle.sign({ name: 'ECDSA', hash: { name: 'SHA-256' } }, privateKey, array));
     return _toBase64(signedBuffer);
 }
 export async function verify(value, signature, publicKey) {
     const text = (typeof value === 'string') ? value : JSON.stringify(value);
     const textArray = new TextEncoder('utf-8').encode(text);
     const signatureBuffer = _fromBase64(signature);
-    return await subtle.verify({ name: 'ECDSA', hash: { name: "SHA-256" } }, publicKey, signatureBuffer, textArray);
+    return await subtle.verify({ name: 'ECDSA', hash: { name: 'SHA-256' } }, publicKey, signatureBuffer, textArray);
 }
 export async function exportKey(key) {
     return await subtle.exportKey('jwk', key);
