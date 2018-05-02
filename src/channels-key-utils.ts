@@ -1,6 +1,6 @@
 import { TextEncoder } from 'text-encoding-shim';
 
-const _crypto = self.crypto || (self as any).msCrypto;
+const _crypto = crypto || self.crypto || (self as any).msCrypto;
 const subtle = _crypto.subtle;
 
 function _toBase64(buffer: Uint8Array): string {

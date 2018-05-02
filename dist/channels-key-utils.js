@@ -10,7 +10,7 @@
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     const text_encoding_shim_1 = require("text-encoding-shim");
-    const _crypto = self.crypto || self.msCrypto;
+    const _crypto = crypto || self.crypto || self.msCrypto;
     const subtle = _crypto.subtle;
     function _toBase64(buffer) {
         const out = Array.prototype.map.call(buffer, (ch) => {
