@@ -11,8 +11,8 @@ function _toBase64(buffer: Uint8Array): string {
 }
 
 function _fromBase64(data: string): Uint8Array {
-  var binstr = atob(data);
-  var buf = new Uint8Array(binstr.length);
+  const binstr = atob(data);
+  const buf = new Uint8Array(binstr.length);
   Array.prototype.forEach.call(binstr, function (ch: string, i: number) {
     buf[i] = ch.charCodeAt(0);
   });
