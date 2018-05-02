@@ -1,6 +1,6 @@
 {
   "name": "channels-key-utils",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Crypto utils for Channels and related applications",
   "private": true,
   "main": "dist/channels-key-utils.js",
